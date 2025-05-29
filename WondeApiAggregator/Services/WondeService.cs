@@ -8,9 +8,9 @@ namespace WondeApiAggregator.Services
     {
         private readonly HttpClient _client;
 
-        private const string BaseUrl = "https://api.wonde.com/v1.0";
+        private const string BaseUrl = "https://api.wonde.com/v1.0/schools/A1930499544/";
 
-        private const string Token = "";
+        private const string Token = "779c8206c48425b2e48821aaf4e205cc561446db";
 
 
         public WondeService(HttpClient client)
@@ -22,29 +22,26 @@ namespace WondeApiAggregator.Services
 
         public async Task<JsonObject> AggregateAsync()
         {
-            var staff = await GetJsonAsync("/staff?include=roles,classes");
+            var staff = await GetJsonAsync("employees?include=roles,classes&per_page=2");
             var staffIds = staff?["data"]?.AsArray().Select(s => s?["id"]?.GetValue<string>()!)?.ToList() ?? new List<string>();
 
             var classesByTeacher = new JsonArray();
             foreach (var id in staffIds)
             {
-                var classes = await GetJsonAsync($"/classes?teachers={id}&include=students");
+                var classes = await GetJsonAsync($"classes?teachers={id}&include=students");
                 if (classes != null)
                     classesByTeacher.Add(classes);
             }
 
-            var classesWithStudents = await GetJsonAsync("/classes?include=students&has_students=true");
-
-            var studentIds = classesWithStudents?["data"]?
-                .AsArray()
-                .SelectMany(c => c?["students"]?.AsArray().Select(s => s?["id"]?.GetValue<string>()!))
+            var studentIds = classesByTeacher.AsArray()
+                .SelectMany(c => c?["data"]?.AsArray().Select(s => s?["id"]?.GetValue<string>()!))
                 .Distinct()
                 .ToList() ?? new List<string>();
 
             var students = new JsonArray();
             foreach (var sid in studentIds)
             {
-                var student = await GetJsonAsync($"/students/{sid}?include=attendance_summary,results,results.aspect,behaviours");
+                var student = await GetJsonAsync($"students/{sid}?include=attendance_summary,results,results.aspect,behaviours");
                 if (student != null)
                     students.Add(student);
             }
@@ -53,7 +50,6 @@ namespace WondeApiAggregator.Services
             {
                 ["staff"] = staff,
                 ["classesByTeacher"] = classesByTeacher,
-                ["classesWithStudents"] = classesWithStudents,
                 ["students"] = students
             };
 
@@ -65,9 +61,18 @@ namespace WondeApiAggregator.Services
         private async Task<JsonObject?> GetJsonAsync(string path)
         {
             using var resp = await _client.GetAsync(path);
+
+            if (resp.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                Console.WriteLine($"Requesting URL: {_client.BaseAddress}{path}");
+                // Optionally log the missing resource here
+                return null;
+            }
+
             resp.EnsureSuccessStatusCode();
+
             var stream = await resp.Content.ReadAsStreamAsync();
-            var node = await JsonNode.ParseAsync(stream);
+            var node = JsonNode.Parse(await new StreamReader(stream).ReadToEndAsync());
             return node as JsonObject;
         }
     }
