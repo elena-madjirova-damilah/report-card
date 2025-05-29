@@ -11,4 +11,12 @@ var app = builder.Build();
 
 app.MapControllers();
 
+
+app.MapGet("/aggregate", async (WondeService service) =>
+{
+    var result = await service.AggregateAsync();
+    return Results.Json(result);
+});
+
+
 app.Run();

@@ -2,7 +2,11 @@
 
 This repository contains a minimal .NET 7 web API which integrates with the [Wonde API](https://docs.wonde.com/docs/api/sync/).
 
+
 The service exposes a controller `WondeController` with an endpoint `/wonde/aggregate` which performs the following actions:
+=======
+The service exposes an endpoint `/aggregate` which performs the following actions:
+ 
 
 1. Requests staff information including roles and classes.
 2. For every staff member, requests the classes they teach including students.
@@ -24,6 +28,10 @@ cd WondeApiAggregator
  dotnet run
 ```
 
+
 Once running, navigate to `http://localhost:5000/wonde/aggregate` to trigger the aggregation process. The endpoint returns the aggregated JSON and also stores it on disk.
+=======
+Once running, navigate to `http://localhost:5000/aggregate` to trigger the aggregation process. The endpoint returns the aggregated JSON and also stores it on disk.
+
 
 > **Note**: The token used for the API requests is hardcoded in `WondeService.cs`. Replace it with a valid token if necessary.
