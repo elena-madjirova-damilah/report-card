@@ -8,6 +8,7 @@ out/
 *.suo
 *.userosscache
 *.sln.docstates
+*.vsidx
 
 # Visual Studio Code
 .vscode/
