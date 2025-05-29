@@ -1,0 +1,24 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/WondeApiAggregator/.vs/WondeApiAggregator/CopilotIndices/17.12.68.61481/SemanticSymbols.db
+/WondeApiAggregator/.vs/WondeApiAggregator/CopilotIndices/17.12.68.61481/SemanticSymbols.db-shm
+/WondeApiAggregator/.vs/WondeApiAggregator/CopilotIndices/17.12.68.61481/SemanticSymbols.db-wal
+/WondeApiAggregator/.vs/WondeApiAggregator/DesignTimeBuild/.dtbcache.v2
+/WondeApiAggregator/.vs/WondeApiAggregator/FileContentIndex/26a95100-5325-4cb5-9633-016682b223f2.vsidx
+/WondeApiAggregator/.vs/WondeApiAggregator/FileContentIndex/42a91d68-3367-47a7-a1dc-c08220e54617.vsidx
+/WondeApiAggregator/.vs/WondeApiAggregator/FileContentIndex/80c473b7-360a-4aba-92e0-07902dd07a08.vsidx
+/WondeApiAggregator/.vs/WondeApiAggregator/FileContentIndex/8ee1725d-75da-4572-85f7-9eed47dcae26.vsidx
+/WondeApiAggregator/.vs/WondeApiAggregator/FileContentIndex/df042d25-826e-4a5c-99d2-a3717cd84383.vsidx
+/WondeApiAggregator/.vs/WondeApiAggregator/v17/.futdcache.v2
+/WondeApiAggregator/.vs/WondeApiAggregator/v17/DocumentLayout.backup.json
+/WondeApiAggregator/.vs/WondeApiAggregator/v17/DocumentLayout.json
+/WondeApiAggregator/.vs/WondeApiAggregator/v17/TestStore/0/000.testlog
+/WondeApiAggregator/.vs/WondeApiAggregator/v17/TestStore/0/testlog.manifest
+/WondeApiAggregator/Properties/launchSettings.json
+/WondeApiAggregator/.vs/WondeApiAggregator/config/applicationhost.config
+/WondeApiAggregator/.vs/WondeApiAggregator/copilot-chat/a5ae9828/sessions/a6159c5d-9a14-4ade-9779-9d9f1b3b8536
+/WondeApiAggregator/.vs/WondeApiAggregator/CopilotIndices/17.12.68.61481/CodeChunks.db
+/WondeApiAggregator/.vs/WondeApiAggregator/CopilotIndices/17.12.68.61481/CodeChunks.db-shm
+/WondeApiAggregator/.vs/WondeApiAggregator/CopilotIndices/17.12.68.61481/CodeChunks.db-wal
