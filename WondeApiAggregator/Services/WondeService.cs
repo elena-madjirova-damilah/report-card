@@ -9,7 +9,9 @@ namespace WondeApiAggregator.Services
         private readonly HttpClient _client;
 
         private const string BaseUrl = "https://api.wonde.com/v1.0";
+
         private const string Token = "";
+
 
         public WondeService(HttpClient client)
         {
